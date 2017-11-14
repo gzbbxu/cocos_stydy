@@ -46,3 +46,40 @@
 
 
 
+三： cocos-creator protobufjs 通信方案。
+
+使用：
+
+1，npm install protobufjs@5 --save
+2，使用案例：
+	     var protobuf = require("protobufjs");
+         var builder = protobuf.newBuilder();
+
+         protobuf.protoFromFile(cc.url.raw('resources/Player.proto'), builder);
+
+
+        var PB = builder.build('grace.proto.msg');
+
+        //实例化Player
+        var player = new PB.Player();
+        //属性赋值
+        player.name = '张三';
+        player.enterTime = Date.now();
+        player.id = 1;
+        console.log("aaaaaaaa:"+PB);
+        var data = player.toArrayBuffer();
+        console.log("data:"+data.byteLength);
+        var otherPlayer = PB.Player.decode(data);
+        console.log(otherPlayer.name+":"+otherPlayer.enterTime);
+
+
+
+
+
+
+
+
+
+	
+
+	
